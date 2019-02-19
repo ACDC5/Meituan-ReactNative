@@ -1,0 +1,19 @@
+问题 
+ Cannot find module 'asap/raw
+
+解决方式
+npm install react-native-maps --save
+
+500响应问题(缓存问题)
+
+react-native start --reset-cache 
+adb reverse tcp:8081 tcp:8081
+
+react-native run-android
+
+安装nativigator
+npm install react-native-deprecated-custom-components  --save
+
+
+安装react-native-tab-navigator
+npm install react-native-tab-navigator  --save

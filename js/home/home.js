@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, Image, StatusBar} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image, StatusBar, Button} from 'react-native';
 import HomeDetail from './HomeDetail'
 
+var Dimensions = require('Dimensions');
+var {width, height} = Dimensions.get('window')
 export default class Home extends Component<Props> {
 
     _pressJumpdetail() {
@@ -25,8 +27,15 @@ export default class Home extends Component<Props> {
                     barStyle="light-content"
                 />
                 {this.titleBar()}
-                <Text style={styles.welcome} onPress={this._pressJumpdetail.bind(this)}>home!</Text>
 
+                <View style={{flexDirection: 'row', justifyContent: 'space-around', padding: 5}}>
+
+                    <Image source={require('../../res/images/hot_car.png')} style={styles.hotImage}/>
+                    <Image source={require('../../res/images/hot_wash.png')} style={styles.hotImage}/>
+                    <Image source={require('../../res/images/hot_eat.png')} style={styles.hotImage}/>
+                    <Image source={require('../../res/images/hot_play.png')} style={styles.hotImage}/>
+                </View>
+                <Button onPress={this._pressJumpdetail.bind(this)} title={'跳转详情'}> </Button>
             </View>
         );
     }
@@ -74,4 +83,11 @@ const styles = StyleSheet.create({
         height: 30,
         marginRight: 10
     },
+
+    hotImage: {
+        width: width * 1 / 4,
+        height: width * 1 / 4,
+        marginRight: 5
+
+    }
 });
