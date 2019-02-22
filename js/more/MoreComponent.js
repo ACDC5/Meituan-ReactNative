@@ -16,7 +16,7 @@ export default class MoreComponent extends Component<Props> {
                 alignItems: "center",
                 justifyContent: 'space-between',
                 padding: 10,
-                borderBottomColor: '#666666',
+                borderBottomColor: '#ccc',
                 borderBottomWidth: 0.5,
                 backgroundColor: 'white'
             }}>
@@ -55,8 +55,8 @@ export default class MoreComponent extends Component<Props> {
             </View>
         } else {
             return <Image source={require('../../res/images/icon_cell_rightarrow.png')} style={{
-                width: Platform.OS === "ios" ? 30 : 10,
-                height: Platform.OS === "ios" ? 30 : 10
+                width:  8,
+                height:  13
             }}/>
         }
         return;
