@@ -18,7 +18,7 @@ export default class Main extends Component<Props> {
 
     render() {
         return (
-            <TabNavigator>
+            <TabNavigator tabBarStyle={{backgroundColor: "white"}}>
                 <TabNavigator.Item
                     selected={this.state.selectedTab === 'home'}
                     title="主页"
@@ -53,22 +53,24 @@ export default class Main extends Component<Props> {
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     selected={this.state.selectedTab === 'mine'}
-                    title="订单"
-                    renderIcon={() => <Image source={require('../../res/images/icon_tabbar_misc.png')}
+                    title="我的"
+
+                    renderIcon={() => <Image source={require('../../res/images/icon_tabbar_mine.png')}
                                              style={styles.iconStyle}/>}
                     renderSelectedIcon={() => <Image
-                        source={require('../../res/images/icon_tabbar_misc_selected.png')}
+                        source={require('../../res/images/icon_tabbar_mine_selected.png')}
                         style={styles.iconStyle}/>}
+
                     onPress={() => this.setState({selectedTab: 'mine'})}>
                     <Mine/>
                 </TabNavigator.Item>
                 <TabNavigator.Item
                     selected={this.state.selectedTab === 'more'}
-                    title="我的"
-                    renderIcon={() => <Image source={require('../../res/images/icon_tabbar_mine.png')}
+                    title="更多"
+                    renderIcon={() => <Image source={require('../../res/images/icon_tabbar_misc.png')}
                                              style={styles.iconStyle}/>}
                     renderSelectedIcon={() => <Image
-                        source={require('../../res/images/icon_tabbar_mine_selected.png')}
+                        source={require('../../res/images/icon_tabbar_misc_selected.png')}
                         style={styles.iconStyle}/>}
                     onPress={() => this.setState({selectedTab: 'more'})}>
                     <More/>
