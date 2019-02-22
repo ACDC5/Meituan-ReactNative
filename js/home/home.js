@@ -42,22 +42,16 @@ export default class Home extends Component<Props> {
 
     titleBar() {
         return <View style={{
+            backgroundColor: '#ff8522',
+            height: 50,
             flexDirection: 'row',
-            height: 60,
-            backgroundColor: "#ff8522",
-            alignItems: 'center'
+            alignItems: 'center',
         }}>
             <Text style={{padding: 10, color: "#fff"}}>
                 北京
             </Text>
 
-            <TextInput placeholder="科技,财经,新闻" style={{
-                backgroundColor: '#fff',
-                borderRadius: 30,
-                padding: 10,
-                margin: 10,
-                flex: 1,
-            }}/>
+            <TextInput placeholder="科技,财经,新闻" style={styles.topInputStyle}/>
 
             <Image source={require('../../res/images/icon_homepage_message.png')} style={styles.imageIcon}/>
             <Image source={require('../../res/images/icon_homepage_scan.png')} style={styles.imageIcon}/>
@@ -67,7 +61,17 @@ export default class Home extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-
+    topInputStyle: {
+        backgroundColor: 'white',
+        borderRadius: 16,
+        margin: 10,
+        padding:0,
+        paddingLeft:10,
+        flex:1,
+        fontSize:10,
+        alignItems: 'center',
+        justifyContent: 'space-around',
+    },
     welcome: {
         fontSize: 20,
         textAlign: 'center',
