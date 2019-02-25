@@ -46,11 +46,11 @@ export default class MoreComponent extends Component<Props> {
         }
         /*文字*/
         if (this.props.rightTitle) {
-            return <View style={{flexDirection: 'row'}}>
+            return <View style={{flexDirection: 'row',alignItems: 'center'}}>
                 < Text style={{color: '#333333', marginRight: 10}}>{this.props.rightTitle}</Text>
                 <Image source={require('../../res/images/icon_cell_rightarrow.png')} style={{
-                    width: Platform.OS === "ios" ? 30 : 10,
-                    height: Platform.OS === "ios" ? 30 : 10
+                    width:  8,
+                    height:  13
                 }}/>
             </View>
         } else {
