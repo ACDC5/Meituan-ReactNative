@@ -16,7 +16,7 @@ export default class MineHeadComponent extends Component<Props> {
                     flexDirection: 'row',
                     justifyContent: 'space-around',
                     alignItems: 'center',
-                    padding:10
+                    padding: 10
                 }}>
                     {this._head2()}
                 </View>
@@ -30,12 +30,13 @@ export default class MineHeadComponent extends Component<Props> {
             backgroundColor: '#ff8522',
             flexDirection: 'row',
             alignItems: "center",
-            paddingTop: 15,
-            paddingBottom: 15
+            paddingTop: 30,
+            paddingBottom: 30
         }}>
-            <Image source={require('../../res/images/shfw.png')} style={{width: 80, height: 80}}/>
+            <Image source={require('../../res/images/see.png')}
+                   style={{width: 50, height: 50, marginLeft: 10, borderRadius: 36,borderWidth:3,borderColor :'#33ffffff'}}/>
             <Text style={{color: 'white', fontWeight: 'bold'}}> 快道科技</Text>
-            <Image source={require('../../res/images/rm.png')} style={{width: 25, height: 25}}/>
+            <Image source={require('../../res/images/avatar_vip.png')} style={{width: 15, height: 15,marginLeft:10}}/>
             <Image source={require('../../res/images/icon_cell_rightarrow.png')}
                    style={{width: 10, height: 15, position: 'absolute', right: 10}}/>
         </View>
@@ -60,7 +61,7 @@ export class HeadSubitemComponent extends Component {
             <Text style={{color: 'white'}}>
                 {this.props.iconName}
             </Text>
-            <Text  style={{color: 'white'}}>
+            <Text style={{color: 'white'}}>
                 {this.props.title}
             </Text>
 

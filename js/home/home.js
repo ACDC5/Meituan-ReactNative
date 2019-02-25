@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import {Platform, StyleSheet, Text, View, TextInput, Image, StatusBar, Button} from 'react-native';
+import {Platform, StyleSheet, Text, View, TextInput, Image, StatusBar, Button, ScrollView} from 'react-native';
 import HomeDetail from './HomeDetail'
+import HomeTopView from "./HomeTopView";
 
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window')
@@ -27,6 +28,9 @@ export default class Home extends Component<Props> {
                     barStyle="light-content"
                 />
                 {this.titleBar()}
+                <ScrollView>
+                    <HomeTopView/>
+                </ScrollView>
 
                 <View style={{flexDirection: 'row', justifyContent: 'space-around', padding: 5}}>
 

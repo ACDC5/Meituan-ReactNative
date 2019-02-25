@@ -10,7 +10,10 @@ export default class MineComponent extends Component<Props> {
                 flexDirection: 'row',
                 alignItems: "center",
                 justifyContent: 'space-between',
-                padding: 10,
+                paddingLeft: 10,
+                paddingRight: 10,
+                paddingTop: 15,
+                paddingBottom: 15,
                 backgroundColor: 'white'
             }}>
                 {/*左边*/}
@@ -21,8 +24,8 @@ export default class MineComponent extends Component<Props> {
 
                     {this.rightView()}
                     <Image source={require('../../res/images/icon_cell_rightarrow.png')} style={{
-                        width:  8,
-                        height:  13
+                        width: 8,
+                        height: 13
                     }}/>
 
                 </View>
