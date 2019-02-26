@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View, TextInput, Image, StatusBar, Button, ScrollView} from 'react-native';
 import HomeDetail from './HomeDetail'
 import HomeTopView from "./HomeTopView";
+import HomeMiddleView from "./HomeMiddleView";
+import HomeMiddleView2 from "./HomeMiddleView2";
 
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window')
@@ -28,18 +30,21 @@ export default class Home extends Component<Props> {
                     barStyle="light-content"
                 />
                 {this.titleBar()}
-                <ScrollView>
+                <ScrollView style={{marginBottom: 50}}>
                     <HomeTopView/>
+                    <HomeMiddleView/>
+                    <HomeMiddleView2/>
+                    <View style={{flexDirection: 'row', justifyContent: 'space-around',marginTop:10, padding: 5}}>
+
+                        <Image source={require('../../res/images/hot_car.png')} style={styles.hotImage}/>
+                        <Image source={require('../../res/images/hot_wash.png')} style={styles.hotImage}/>
+                        <Image source={require('../../res/images/hot_eat.png')} style={styles.hotImage}/>
+                        <Image source={require('../../res/images/hot_play.png')} style={styles.hotImage}/>
+                    </View>
+                    <Button onPress={this._pressJumpdetail.bind(this)} title={'跳转详情'}> </Button>
                 </ScrollView>
 
-                <View style={{flexDirection: 'row', justifyContent: 'space-around', padding: 5}}>
 
-                    <Image source={require('../../res/images/hot_car.png')} style={styles.hotImage}/>
-                    <Image source={require('../../res/images/hot_wash.png')} style={styles.hotImage}/>
-                    <Image source={require('../../res/images/hot_eat.png')} style={styles.hotImage}/>
-                    <Image source={require('../../res/images/hot_play.png')} style={styles.hotImage}/>
-                </View>
-                <Button onPress={this._pressJumpdetail.bind(this)} title={'跳转详情'}> </Button>
             </View>
         );
     }

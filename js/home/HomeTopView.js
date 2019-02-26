@@ -49,7 +49,6 @@ export default class HomeTopView extends Component <Props> {
                                 // 通过偏移量和屏幕宽度计算第几页 需要四舍五入, 计算所得是小数
                                 var currentPager = Math.ceil(offSetX / width);
                                 this.setState({currentPager: currentPager})
-                                console.warn("索引====" + currentPager)
                             }}>
                     {this._getBannerView()}
                 </ScrollView>
