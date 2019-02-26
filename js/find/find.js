@@ -8,7 +8,8 @@ import {
     Text,
     FlatList,
     Image,
-    View
+    View,
+    Alert
 } from 'react-native';
 
 //屏幕信息
@@ -138,7 +139,7 @@ export default class Find extends Component<Props> {
     }
 
     _onItemClick(item) {
-        console.log("page" + this.state.page + " = " + item.baike_name)
+        Alert.alert( " name: " + item.name+" \ndes:"+item.single_word);
     }
 
 
