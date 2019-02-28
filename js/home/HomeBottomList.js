@@ -21,20 +21,13 @@ const {width, height} = dimensions.get('window');
 var dataRepository = new DataRepository();
 export default class HomeBottomList extends Component<Props> {
 
-
-    static navigationOptions = () => ({header: null,});
-
     constructor(props) {
         super(props);
-        this.page = 1
-        this.state = {data: [], isRefresh: false, isLoadMore: false}
+        this.state = {data: []}
     }
 
     componentDidMount(): void {
-        if (!this.state.isRefresh) {
-            this.page = 1
-            this._getHotList()
-        }
+        this._getHotList()
     }
 
     render() {
@@ -43,30 +36,16 @@ export default class HomeBottomList extends Component<Props> {
                       data={this.state.data}
                 //item显示的布局
                       renderItem={({item}) => this._createListItem(item)}
-                      keyExtractor={(item, index) => item.id}
-                // 添加尾布局
-                      ListFooterComponent={this._createListFooter}
-                // 下拉刷新相关
-                      onRefresh={() => this._onRefresh()}
-                      refreshing={this.state.isRefresh}
-                // 加载更多
-                      onEndReached={() => this._onLoadMore()}
-                      onEndReachedThreshold={0.1}/>);
+                      keyExtractor={(item, index) => item.id}/>);
     }
 
 
     _getHotList() {
-
-        dataRepository.fetchData("http://m.app.haosou.com/index/getData?type=1&page=" + this.page).then((responseJson) => {
-            console.log(responseJson)
-            if (this.page === 1) {
-                console.log("重新加载")
-                this.setState({data: responseJson.list})
-            } else {
-                console.log("加载更多")
-                this.setState({isLoadMore: false, data: this.state.data.concat(responseJson.list)})
-            }
-        });
+        dataRepository.fetchData("http://m.app.haosou.com/index/getData?type=1&page=" + this.page)
+            .then((responseJson) => {
+                let data = responseJson.list;
+                this.setState({data: data})
+            });
     }
 
     _createListItem(item) {
@@ -90,31 +69,6 @@ export default class HomeBottomList extends Component<Props> {
         </TouchableOpacity>);
     }
 
-    _createListFooter() {
-        return (<View style={styles.footerView}>
-            <ActivityIndicator
-                style={styles.indicator}
-                size={'large'}
-                color={'red'}
-                animating={true}
-            />
-            <Text>正在加载更多</Text>
-        </View>)
-    }
-
-    _onRefresh = () => {
-        if (!this.state.isRefresh) {
-            this.page = 1
-            this._getHotList()
-        }
-    };
-
-    _onLoadMore() {
-        if (!this.state.isLoadMore && this.state.data.length > 0) {
-            this.page = this.page + 1
-            this._getHotList()
-        }
-    }
 
     _onItemClick(item) {
         Alert.alert(" name: " + item.name + " \ndes:" + item.single_word);
