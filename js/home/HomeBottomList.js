@@ -43,7 +43,7 @@ export default class HomeBottomList extends Component<Props> {
                       data={this.state.data}
                 //item显示的布局
                       renderItem={({item}) => this._createListItem(item)}
-                    //  keyExtractor={(item, index) => item.id}
+                      keyExtractor={(item, index) => item.id}
                 // 添加尾布局
                       ListFooterComponent={this._createListFooter}
                 // 下拉刷新相关
