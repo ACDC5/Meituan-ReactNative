@@ -11,7 +11,7 @@ export default class Launcher extends Component<Props> {
                this.props.navigator.replace({
                    component:Main
                })
-           }, 10)
+           }, 1000)
        }
     render() {
         return (

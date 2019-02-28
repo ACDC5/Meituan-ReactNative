@@ -4,6 +4,7 @@ import HomeDetail from './HomeDetail'
 import HomeTopView from "./HomeTopView";
 import HomeMiddleView from "./HomeMiddleView";
 import HomeMiddleView2 from "./HomeMiddleView2";
+import HomeBottomList from "./HomeBottomList";
 
 var Dimensions = require('Dimensions');
 var {width, height} = Dimensions.get('window')
@@ -32,16 +33,10 @@ export default class Home extends Component<Props> {
                 {this.titleBar()}
                 <ScrollView style={{marginBottom: 50}}>
                     <HomeTopView/>
+                    <Button onPress={this._pressJumpdetail.bind(this)} title={'跳转详情'}> </Button>
                     <HomeMiddleView/>
                     <HomeMiddleView2/>
-                    <View style={{flexDirection: 'row', justifyContent: 'space-around',marginTop:10, padding: 5}}>
-
-                        <Image source={require('../../res/images/hot_car.png')} style={styles.hotImage}/>
-                        <Image source={require('../../res/images/hot_wash.png')} style={styles.hotImage}/>
-                        <Image source={require('../../res/images/hot_eat.png')} style={styles.hotImage}/>
-                        <Image source={require('../../res/images/hot_play.png')} style={styles.hotImage}/>
-                    </View>
-                    <Button onPress={this._pressJumpdetail.bind(this)} title={'跳转详情'}> </Button>
+                    <HomeBottomList/>
                 </ScrollView>
 
 

@@ -11,12 +11,15 @@ import {
     View,
     Alert
 } from 'react-native';
+import {DataRepository} from "./DataRepository";
 
 //屏幕信息
 const dimensions = require('Dimensions');
 //获取屏幕的宽度和高度
 const {width, height} = dimensions.get('window');
-export default class Find extends Component<Props> {
+
+var dataRepository = new DataRepository();
+export default class HomeBottomList extends Component<Props> {
 
 
     static navigationOptions = () => ({header: null,});
@@ -35,55 +38,35 @@ export default class Find extends Component<Props> {
     }
 
     render() {
-        return (<View style={{marginBottom:50}}>
-
-            <View style={{
-                paddingLeft: 10,
-                alignItems: 'center',
-                height: 50,
-                justifyContent: 'center',
-                backgroundColor: "#ff8522",
-                flexDirection: "row",
-            }}>
-
-                <Text style={{color: "white", fontSize: 15, fontWeight: 'bold'}}> 列表</Text>
-            </View>
+        return (
             <FlatList style={styles.container}
                       data={this.state.data}
                 //item显示的布局
                       renderItem={({item}) => this._createListItem(item)}
-                      keyExtractor={(item, index) => item.id}
-                // 空布局
-                      ListEmptyComponent={this._createEmptyView}
-                // 添加头尾布局
-                      ListHeaderComponent={this._createListHeader}
+                    //  keyExtractor={(item, index) => item.id}
+                // 添加尾布局
                       ListFooterComponent={this._createListFooter}
                 // 下拉刷新相关
                       onRefresh={() => this._onRefresh()}
                       refreshing={this.state.isRefresh}
                 // 加载更多
                       onEndReached={() => this._onLoadMore()}
-                      onEndReachedThreshold={0.1}/>
-        </View>);
-    }
-
-    _createListHeader() {
-        return (<View style={styles.headView}>
-            <Text style={{color: 'white'}}> 头部布局 </Text>
-        </View>)
+                      onEndReachedThreshold={0.1}/>);
     }
 
 
-    _createListFooter() {
-        return (<View style={styles.footerView}>
-            <ActivityIndicator
-                style={styles.indicator}
-                size={'large'}
-                color={'red'}
-                animating={true}
-            />
-            <Text>正在加载更多</Text>
-        </View>)
+    _getHotList() {
+
+        dataRepository.fetchData("http://m.app.haosou.com/index/getData?type=1&page=" + this.page).then((responseJson) => {
+            console.log(responseJson)
+            if (this.page === 1) {
+                console.log("重新加载")
+                this.setState({data: responseJson.list})
+            } else {
+                console.log("加载更多")
+                this.setState({isLoadMore: false, data: this.state.data.concat(responseJson.list)})
+            }
+        });
     }
 
     _createListItem(item) {
@@ -107,27 +90,16 @@ export default class Find extends Component<Props> {
         </TouchableOpacity>);
     }
 
-    _createEmptyView() {
-        return (<View style={{height: '100%', alignItems: 'center', justifyContent: 'center'}}>
-            <Text style={{fontSize: 16}}> 暂无列表数据，下啦刷新 </Text>
-        </View>);
-    }
-
-
-    _getHotList() {
-        fetch("http://m.app.haosou.com/index/getData?type=1&page=" + this.page).then((response) => response.json()).then((responseJson) => {
-            console.log(responseJson)
-            if (this.page === 1) {
-                console.log("重新加载")
-                this.setState({data: responseJson.list})
-            } else {
-                console.log("加载更多")
-                this.setState({isLoadMore: false, data: this.state.data.concat(responseJson.list)})
-            }
-        }).catch((error) => {
-            console.warn(error);
-            this.page = this.page - 1
-        });
+    _createListFooter() {
+        return (<View style={styles.footerView}>
+            <ActivityIndicator
+                style={styles.indicator}
+                size={'large'}
+                color={'red'}
+                animating={true}
+            />
+            <Text>正在加载更多</Text>
+        </View>)
     }
 
     _onRefresh = () => {
@@ -145,7 +117,7 @@ export default class Find extends Component<Props> {
     }
 
     _onItemClick(item) {
-        Alert.alert( " name: " + item.name+" \ndes:"+item.single_word);
+        Alert.alert(" name: " + item.name + " \ndes:" + item.single_word);
     }
 
 
@@ -153,7 +125,10 @@ export default class Find extends Component<Props> {
 
 const
     styles = StyleSheet.create({
-        container: {backgroundColor: 'white',},
+        container: {
+            backgroundColor: 'white',
+            marginTop: 10,
+        },
         headView: {
             width: width,
             height: 100,
@@ -163,8 +138,7 @@ const
         },
         footerView: {
             width: width,
-            height: 100,
-            backgroundColor: 'yellow',
+            height: 50,
             justifyContent: 'center',
             alignItems: 'center'
         },
